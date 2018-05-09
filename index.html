@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>svideo</title>
-    <link rel="stylesheet" href="/public/style.css" />
+    <!-- <link rel="stylesheet" href="/public/style.css" /> -->
 </head>
 <body>
-    <div id="app"><%= body %></div>
-    <script src="/public/bundle.js"></script>
+  <!-- <script src="/public/bundle.js"></script> -->
+
+  <script type="text/javascript" src="node_modules\react\dist\react.js"></script>
+  <script type="text/javascript" src="node_modules\react-dom\dist\react-dom.js"></script>
+  <div id="app"><%= body %></div>
+
+  <script type="text/javascript">
+
+    //Created to reduce amount of typing needed
+    const ce = React.createElement
+
+    const MyFirstComponent = function(){
+      return  ce('div', null,
+          ce(MyTitle, {title: "Stranger Things", color: "YellowGreen"} ),
+          ce(MyTitle, {title: "Rick and Morty", color: "GreenYellow"} ),
+          ce(MyTitle, {title: "The Office", color: "LimeGreen"} ),
+          ce(MyTitle, {title: "Parks and Recreation", color: "peru"} ),
+          ce(MyTitle, {title: "H3H3 Productions", color: "MediumAquamarine"} )
+        )
+
+    }
+
+    //createElement(elementtype, styleobject, scriptobject)
+    const MyTitle = function(props){
+      return (
+        ce('div', { id: 'my-first-component' },
+          ce('h1', { style:{color: props.color} }, props.title)
+        )
+      )
+    }
+
+    //Call in ReactDOM to do some printing to the HTMl application
+    ReactDOM.render(
+      ce(MyFirstComponent),
+      document.getElementById('app')
+    );
+
+  </script>
+
+
+
+
+
 </body>
 </html>
