@@ -1,14 +1,22 @@
-const React = require('react')
-const ReactDOM = require('react-dom')
+import React from 'react'
+import { render } from 'react-dom'
 
-const App = () => (
-  <div className='app-container'>
-    <div className='home-info'>
-      <h1 className='title'>svideo</h1>
-      <input className='search' type='text' placeholder='Search' />
-      <button className='browse-all'> or Browse All</button>
-    </div>
-  </div>
-)
+const ce = React.createElement
 
-ReactDOM.render(<App />, document.getElementById('app'))
+const MyTitle = props => {
+  return ce('div', 'my-title', ce('h1', { style: { color: props.color } }, props.title))
+}
+
+const MyFirstComponent = () => {
+  return ce(
+    'div',
+    { id: 'my-first-component' },
+    ce(MyTitle, { title: 'Game of Thrones', color: 'YellowGreen' }),
+    ce(MyTitle, { title: 'Rick and Morty', color: 'Navy' }),
+    ce(MyTitle, { title: 'Raw', color: 'Pink' }),
+    ce(MyTitle, { title: 'Westworld', color: 'Gray' }),
+    ce(MyTitle, { title: 'The Office', color: 'peru' })
+  )
+}
+
+render(ce(MyFirstComponent), document.getElementById('app'))
